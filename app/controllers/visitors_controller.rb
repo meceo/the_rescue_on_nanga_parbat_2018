@@ -4,7 +4,7 @@ class VisitorsController < ApplicationController
     index = @statuses.count
     @hash = Gmaps4rails.build_markers(@statuses) do |status, marker|
       marker.title status.recorded_at
-      marker.infowindow "czas: #{status.recorded_at}"
+      marker.infowindow status.data.to_json
       marker.lat status.data["latitude"]
       marker.lng status.data["longitude"]
       marker.picture({
@@ -12,6 +12,7 @@ class VisitorsController < ApplicationController
         width: 32,
         height: 32
       })
+      marker.json(index: index)
       index -= 1
     end
   end

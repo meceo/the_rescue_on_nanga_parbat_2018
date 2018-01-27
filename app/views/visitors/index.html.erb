@@ -1,4 +1,4 @@
-<h3>Welcome</h3>
+<h3>Adam Bielecki</h3>
 
 <div style='width: 800px;'>
   <div id="sidebar_builder" class="map_container" style='width: 800px; height: 400px;'></div>
@@ -9,7 +9,7 @@
 <script>
   $( document ).ready(function() {
     function createSidebarLi(json){
-      return ("<li><a>" + json.marker_title + "</a></li>");
+      return ("<li><a>" + json.index + ' (' +json.marker_title + ')' + "</a></li>");
     };
 
     function bindLiToMarker($li, marker){
