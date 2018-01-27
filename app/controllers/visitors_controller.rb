@@ -12,7 +12,7 @@ class VisitorsController < ApplicationController
         width: 32,
         height: 32
       })
-      marker.json(index: index)
+      marker.json(index: index, elevation: status["data"]["elevation"].round(2), message: status["data"]["messageContent"] || "---")
       index -= 1
     end
   end

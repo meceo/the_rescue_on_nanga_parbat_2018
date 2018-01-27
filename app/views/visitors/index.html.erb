@@ -5,13 +5,26 @@
     <div id="sidebar_builder" class="map_container"></div>
   </div>
   <div id='sidebar_container'>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Time</th>
+          <th scope="col">Elevation</th>
+          <th scope="col">Message from Adam</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
   </div>
 </div>
 
 <script>
   $( document ).ready(function() {
-    function createSidebarLi(json){
-      return ("<li><a>" + json.index + ' (' +json.marker_title + ')' + "</a></li>");
+    function createSidebarTr(json){
+      return ("<tr><td><a>" + json.index + "</a></td><td>" + json.marker_title + "</td><td>" + json.elevation + "</td><td>" + json.message + "</td></tr>");
     };
 
     function bindLiToMarker($li, marker){
@@ -25,9 +38,9 @@
 
     function createSidebar(json_array){
       _.each(json_array, function(json){
-        var $li = $( createSidebarLi(json) );
-        $li.appendTo('#sidebar_container');
-        bindLiToMarker($li, json.marker);
+        var $tr = $( createSidebarTr(json) );
+        $tr.appendTo('#sidebar_container tbody');
+        bindLiToMarker($tr, json.marker);
       });
     };
 
