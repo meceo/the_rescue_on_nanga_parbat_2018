@@ -7,7 +7,7 @@ class ExtractStatusesJob < ApplicationJob
       hash = JSON.parse(response.body)
       hash["response"]["feedMessageResponse"]["messages"]["message"].each do |message|
         new_record = false
-        Status.find_or_create_by!(identifier: message["id"]) do |status|
+        status = Status.find_or_create_by!(identifier: message["id"]) do |status|
           status.recorded_at = Time.at(message["unixTime"])
           status.data = message
           new_record = true
