@@ -9,6 +9,8 @@ class ExtractStatusesJob < ApplicationJob
         Status.find_or_create_by!(identifier: message["id"]) do |status|
           status.recorded_at = Time.at(message["unixTime"])
           status.data = message
+
+          FetchElevationJob.perform_later(status.id)
         end
       end
     end
