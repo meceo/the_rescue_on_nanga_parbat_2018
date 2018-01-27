@@ -1,38 +1,58 @@
 <h3>Welcome</h3>
 
 <div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+  <div id="sidebar_builder" class="map_container" style='width: 800px; height: 400px;'></div>
+</div>
+<div id='sidebar_container'>
 </div>
 
 <script>
   $( document ).ready(function() {
-    handler = Gmaps.build('Google');
+    function createSidebarLi(json){
+      return ("<li><a>" + json.marker_title + "</a></li>");
+    };
+
+    function bindLiToMarker($li, marker){
+      $li.on('click', function(){
+        handler.getMap().setZoom(14);
+        marker.setMap(handler.getMap()); //because clusterer removes map property from marker
+        marker.panTo();
+        google.maps.event.trigger(marker.getServiceObject(), 'click');
+      })
+    };
+
+    function createSidebar(json_array){
+      _.each(json_array, function(json){
+        var $li = $( createSidebarLi(json) );
+        $li.appendTo('#sidebar_container');
+        bindLiToMarker($li, json.marker);
+      });
+    };
+
+    var handler = Gmaps.build('Google');
     handler.buildMap({
         provider: {
-          disableDefaultUI: true
+          mapTypeId: 'hybrid'
+          // disableDefaultUI: true
           // pass in other Google Maps API options here
         },
         internal: {
-          id: 'map'
+          id: 'sidebar_builder'
         }
       },
       function(){
-        markers = handler.addMarkers([
-          {
-            "lat": 0,
-            "lng": 0,
-            "picture": {
-              "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-              "width":  32,
-              "height": 32
-            },
-            "infowindow": "hello!"
-          }
-        ]);
-        handler.bounds.extendWith(markers);
+        var json_array = <%=raw @hash.to_json %>
+        markers = handler.addMarkers(json_array);
+
+        _.each(json_array, function(json, index){
+          json.marker = markers[index];
+        });
+
+        createSidebar(json_array);
+        handler.bounds.extendWith(markers.slice(0, 5));
         handler.fitMapToBounds();
       }
     );
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+
   })
 </script>
