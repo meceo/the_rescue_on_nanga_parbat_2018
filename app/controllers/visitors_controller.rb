@@ -4,11 +4,11 @@ class VisitorsController < ApplicationController
     index = @statuses.count
     @hash = Gmaps4rails.build_markers(@statuses) do |status, marker|
       marker.title status.recorded_at
-      marker.infowindow status.data.to_json
+      marker.infowindow status.data.map{|k,v| "#{k}: #{v}"}.join("<br/>")
       marker.lat status.data["latitude"]
       marker.lng status.data["longitude"]
       marker.picture({
-        url: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=#{index}|FF0000|000000",
+        url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=#{index}|FF0000|000000",
         width: 32,
         height: 32
       })
