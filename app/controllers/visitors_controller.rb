@@ -13,7 +13,7 @@ class VisitorsController < ApplicationController
       marker.lat status.data["latitude"]
       marker.lng status.data["longitude"]
       marker.picture({
-        url: "http://chart.apis.google.com/chart?chst=d_map_spin&chld=1|0|33FF33|10|_|#{index}",
+        url: "https://chart.apis.google.com/chart?chst=d_map_spin&chld=1|0|33FF33|10|_|#{index}",
         width: 40,
         height: 60
       })
