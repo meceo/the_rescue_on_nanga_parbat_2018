@@ -9,8 +9,9 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Time</th>
-          <th scope="col">Elevation</th>
+          <th scope="col">Time (Europe/Warsaw)</th>
+          <th scope="col">Elevation (mamsl)</th>
+          <th scope="col">Speed (mamsl/minute)</th>
           <th scope="col">Message from Adam</th>
         </tr>
       </thead>
@@ -24,7 +25,7 @@
 <script>
   $( document ).ready(function() {
     function createSidebarTr(json){
-      return ("<tr><td><a>" + json.index + "</a></td><td>" + json.marker_title + "</td><td>" + json.elevation + "</td><td>" + json.message + "</td></tr>");
+      return ("<tr><td><a>" + json.index + "</a></td><td>" + json.marker_title + "</td><td>" + json.elevation + "</td><td>" + json.speed +  "</td><td>" + json.message + "</td></tr>");
     };
 
     function bindLiToMarker($li, marker){
