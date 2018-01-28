@@ -13,9 +13,9 @@ class VisitorsController < ApplicationController
       marker.lat status.data["latitude"]
       marker.lng status.data["longitude"]
       marker.picture({
-        url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=#{index}|FF0000|000000",
-        width: 32,
-        height: 32
+        url: "http://chart.apis.google.com/chart?chst=d_map_spin&chld=1|0|33FF33|10|_|#{index}",
+        width: 40,
+        height: 60
       })
       marker.json(index: index, elevation: status["data"]["elevation"]&.round(2), message: status["data"]["messageContent"] || "---")
       index -= 1
