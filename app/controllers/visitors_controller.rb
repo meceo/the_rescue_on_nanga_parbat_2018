@@ -9,7 +9,7 @@ class VisitorsController < ApplicationController
       speed = nil
       if previous_status && previous_status.data["elevation"].present? && status.data["elevation"].present?
         distance_difference = status.data["elevation"] - previous_status.data["elevation"]
-        time_difference = (status.recorded_at - previous_status.recorded_at) / 60
+        time_difference = (status.recorded_at - previous_status.recorded_at) / 3600
         speed = (distance_difference / time_difference).round
         # puts [previous_status.data["elevation"], status.data["elevation"], distance_difference, time_difference, distance_difference / time_difference]
       end
