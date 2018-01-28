@@ -3,8 +3,13 @@ class VisitorsController < ApplicationController
     @statuses = Status.order("recorded_at DESC")
     index = @statuses.count
     @hash = Gmaps4rails.build_markers(@statuses) do |status, marker|
-      marker.title status.recorded_at
-      marker.infowindow status.data.map{|k,v| "#{k}: #{v}"}.join("<br/>")
+      recorded_at = I18n.l(status.recorded_at, format: "%Y-%m-%d %H:%M:%S")
+      marker.title recorded_at
+      infowindow = "#{recorded_at}<hr/>"
+      infowindow += status.data.map do |k,v|
+        "#{k}: #{v}"
+      end.join("<br/>")
+      marker.infowindow infowindow
       marker.lat status.data["latitude"]
       marker.lng status.data["longitude"]
       marker.picture({
@@ -12,7 +17,7 @@ class VisitorsController < ApplicationController
         width: 32,
         height: 32
       })
-      marker.json(index: index, elevation: status["data"]["elevation"].round(2), message: status["data"]["messageContent"] || "---")
+      marker.json(index: index, elevation: status["data"]["elevation"]&.round(2), message: status["data"]["messageContent"] || "---")
       index -= 1
     end
   end
