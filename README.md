@@ -1,50 +1,25 @@
-Bielecki
-================
+# The Quick&Dirty map with GPS tracking
+#### Build to relieve tracking service used for **The Nanga Parbat rescue in 2018**
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+---
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+## Story
 
-Rails Composer is supported by developers who purchase our RailsApps tutorials.
+On Saturday evening, 27th January 2018, the world has experienced the great effort of real heroes Denis Urubko, Adam Bielecki, Jarek Botor, and Piotr Tomala climbing the K2 mountain to rescue Elisabeth Revol and Tomasz Mackiewicz.
 
-Problems? Issues?
------------
+One can read more about the rescue story here:
+- [Story covered on nationalgeographic.com](https://www.nationalgeographic.com/adventure/article/adam-bielecki-denis-urubko-mountaineers)
+- [Story covered on planetmountain.com](https://www.planetmountain.com/en/news/alpinism/the-nanga-parbat-rescue.html)
 
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
+## The problem
 
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
+Unfortunately, the rescue team coordinators used the same tracking service (api.findmespot.com) that was publicly available for everyone else. As a consequence of huge traffic and some limits, the service got not responsive and the coordinators appealed to people for not using the service.
+- https://twitter.com/mariacywinska/status/957264557084377088- https://twitter.com/barczyk_mateusz/status/957277296666316802
 
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
+## The quick&dity solution
 
-Ruby on Rails
--------------
+The project required quickly building and hosting an app to provide the location information of the rescue team and to unload part of the main tracking service traffic.Thanks to [Ruby on Rails](https://rubyonrails.org) framework and [Heroku PAAS](heroku.com) the challenge was fast&easy. In less than an hour, the app was hosted. In a few additional hours, the functionality was delivered.
 
-This application requires:
+## Result
 
-- Ruby 2.3.4
-- Rails 5.1.4
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Getting Started
----------------
-
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+The app got linked in many places, including [one of the largest sport website in Poland www.sport.pl](https://www.sport.pl/inne/14,64998,22949860.html). Together with similar apps created by other people, the app helped to relieve the main tracking service a bit.
